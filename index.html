@@ -7,6 +7,7 @@
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
         
+        /* OBLIGATORIO: position: relative para que contenga al logo en la esquina */
         .card { 
             position: relative; 
             max-width: 500px; 
@@ -17,6 +18,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
         }
         
+        /* OBLIGATORIO: position: absolute para fijarlo en la esquina superior derecha */
         .logo { 
             position: absolute; 
             top: 15px; 
@@ -29,7 +31,6 @@
         label { margin-top: 15px; display: block; font-weight: bold; text-align: left; }
         input, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; }
         
-        /* Botón en azul claro con texto oscuro para mayor legibilidad */
         button { 
             background-color: #3498db; 
             color: white; 
@@ -39,16 +40,17 @@
             cursor: pointer; 
             border-radius: 4px; 
         }
-        button:hover { background-color: #2980b9; } /* Azul un poco más oscuro al pasar el mouse */
+        button:hover { background-color: #2980b9; }
 
         table { width: 100%; margin-top: 20px; border-collapse: collapse; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        th { background-color: #1626D9; }
+        th { background-color: #1626D9; color: white; }
     </style>
 </head>
 <body>
 
 <div class="card">
+    <!-- El nombre del archivo debe coincidir exactamente con el que subiste a GitHub -->
     <img src="9-1-1.jpg" alt="Logo de la empresa" class="logo">
 
     <h2>Asignación turnos de descanso</h2>
@@ -67,7 +69,7 @@
         <option value="00:00">00:00 hrs</option>
     </select>
 
-    <button onclick="registrarTurno()">Registrar Turno de Salida</button>
+    <button onclick="registrarTurno()">Registrar e Imprimir Turno de Salida</button>
 
     <table id="tablaResultados" style="display: none;">
         <thead>
