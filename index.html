@@ -6,13 +6,28 @@
     <title>Asignación de Descansos</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
-        .card { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
         
-        /* Estilos para el Logo */
-        .logo { max-width: 150px; height: auto; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto; }
+        /* .card debe ser relative para que el logo se ubique en su esquina */
+        .card { 
+            position: relative; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 30px 20px 20px 20px; /* Espacio superior extra para el logo */
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+        }
         
-        /* Alineación del texto e insumos dentro del formulario */
-        .card h2 { margin-top: 0; color: #333; }
+        /* Estilo y posición del Logo en la esquina superior derecha */
+        .logo { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            max-width: 70px; 
+            height: auto; 
+        }
+
+        .card h2 { margin-top: 0; color: #333; padding-right: 80px; } /* Evita que el título choque con el logo */
         label { margin-top: 15px; display: block; font-weight: bold; text-align: left; }
         input, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; }
         button { background-color: #28a745; color: white; border: none; font-size: 16px; margin-top: 20px; cursor: pointer; border-radius: 4px; }
@@ -25,8 +40,8 @@
 <body>
 
 <div class="card">
-    <!-- Contenedor e Imagen del Logo -->
-    <img src="C:\Users\DELL\OneDrive\Imágenes\9-1-1.jpg" alt="Logo de la empresa" class="logo">
+    <!-- Cambia 'logo.png' por el nombre real de tu archivo de imagen en GitHub -->
+    <img src="C:\Users\DELL\OneDrive\Imágenes\9-1-1.jpg" alt="Logo" class="logo">
 
     <h2>Asignación de Salida a turnos de descanso</h2>
 
@@ -60,7 +75,6 @@
 </div>
 
 <script>
-    // Mapeo de opciones de descanso por cada hora de entrada
     const opcionesDescanso = {
         "06:00": ["08:00", "09:30", "10:30"],
         "07:00": ["09:00", "10:15", "11:15"],
