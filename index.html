@@ -66,4 +66,76 @@
     <!-- Título centrado -->
     <h2>Asignación turnos de descanso</h2>
 
-    <label for="userId">ID o Nombre del
+    <label for="userId">ID o Nombre del Colaborador:</label>
+    <input type="text" id="userId" placeholder="Ej. Ev o ID-1234">
+
+    <label for="turnoHora">Hora del Turno de Ingreso:</label>
+    <select id="turnoHora">
+        <option value="">-- Seleccione una hora --</option>
+        <option value="06:00">06:00 hrs</option>
+        <option value="07:00">07:00 hrs</option>
+        <option value="09:00">09:00 hrs</option>
+        <option value="21:00">21:00 hrs</option>
+        <option value="22:00">22:00 hrs</option>
+        <option value="00:00">00:00 hrs</option>
+    </select>
+
+    <button onclick="registrarTurno()">Registrar e Imprimir Turno de Salida</button>
+
+    <table id="tablaResultados" style="display: none;">
+        <thead>
+            <tr>
+                <th>Colaborador</th>
+                <th>Hora Entrada</th>
+                <th>Descanso Asignado</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla"></tbody>
+    </table>
+</div>
+
+<script>
+    const opcionesDescanso = {
+        "06:00": ["08:00", "09:30", "10:30"],
+        "07:00": ["09:00", "10:15", "11:15"],
+        "09:00": ["11:00", "12:30", "13:30"],
+        "21:00": ["23:00", "00:45", "01:45"],
+        "22:00": ["00:00", "01:30", "02:30"],
+        "00:00": ["01:20", "03:00", "04:00"]
+    };
+
+    function registrarTurno() {
+        const usuario = document.getElementById("userId").value.trim();
+        const horaIngreso = document.getElementById("turnoHora").value;
+
+        if (!usuario) {
+            alert("Por favor, ingrese el ID o Nombre del colaborador.");
+            return;
+        }
+
+        if (!horaIngreso) {
+            alert("Por favor, seleccione una hora de ingreso.");
+            return;
+        }
+
+        const descansosDisponibles = opcionesDescanso[horaIngreso];
+        const indiceAleatorio = Math.floor(Math.random() * descansosDisponibles.length);
+        const descansoAsignado = descansosDisponibles[indiceAleatorio];
+
+        const cuerpoTabla = document.getElementById("cuerpoTabla");
+        const nuevaFila = `
+            <tr>
+                <td>${usuario}</td>
+                <td>${horaIngreso} hrs</td>
+                <td><strong>${descansoAsignado} hrs</strong></td>
+            </tr>
+        `;
+        
+        cuerpoTabla.innerHTML = nuevaFila;
+        document.getElementById("tablaResultados").style.display = "table";
+        document.getElementById("userId").value = "";
+    }
+</script>
+
+</body>
+</html>
