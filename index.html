@@ -5,126 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asignación de Descansos</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 40px 20px; }
         
-        /* OBLIGATORIO: position: relative para que contenga al logo en la esquina */
+        /* Se aumentó max-width de 500px a 650px y se amplió el padding */
         .card { 
             position: relative; 
-            max-width: 500px; 
+            max-width: 650px; 
             margin: 0 auto; 
             background: white; 
-            padding: 35px 20px 20px 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            padding: 40px 35px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            text-align: center;
         }
         
-        /* OBLIGATORIO: position: absolute para fijarlo en la esquina superior derecha */
+        /* Estilo y centrado del Logo */
         .logo { 
-            position: absolute; 
-            top: 15px; 
-            right: 20px; 
-            max-width: 60px; 
+            display: block;
+            margin: 0 auto 20px auto; 
+            max-width: 90px; /* Tamaño del logo ligeramente ajustado a la nueva escala */
             height: auto; 
         }
 
-        .card h2 { margin-top: 0; color: #333; padding-right: 70px; font-size: 22px; } 
-        label { margin-top: 15px; display: block; font-weight: bold; text-align: left; }
-        input, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; }
+        /* Estilo y centrado del Título */
+        .card h2 { 
+            margin-top: 0; 
+            margin-bottom: 25px;
+            color: #333; 
+            font-size: 24px; 
+            text-align: center;
+        } 
+
+        label { margin-top: 18px; display: block; font-weight: bold; text-align: left; font-size: 15px; }
+        input, select, button { width: 100%; padding: 12px; margin-top: 6px; box-sizing: border-box; font-size: 15px; }
         
         button { 
             background-color: #3498db; 
             color: white; 
             border: none; 
             font-size: 16px; 
-            margin-top: 20px; 
+            font-weight: bold;
+            margin-top: 25px; 
             cursor: pointer; 
-            border-radius: 4px; 
+            border-radius: 6px; 
+            transition: background-color 0.2s ease;
         }
         button:hover { background-color: #2980b9; }
 
-        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        table { width: 100%; margin-top: 25px; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; font-size: 15px; }
         th { background-color: #1626D9; color: white; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <!-- El nombre del archivo debe coincidir exactamente con el que subiste a GitHub -->
+    <!-- Logo centrado en la parte superior -->
     <img src="9-1-1.jpg" alt="Logo de la empresa" class="logo">
 
+    <!-- Título centrado -->
     <h2>Asignación turnos de descanso</h2>
 
-    <label for="userId">ID o Nombre del Colaborador:</label>
-    <input type="text" id="userId" placeholder="Ej. Ev o ID-1234">
-
-    <label for="turnoHora">Hora del Turno de Ingreso:</label>
-    <select id="turnoHora">
-        <option value="">-- Seleccione una hora --</option>
-        <option value="06:00">06:00 hrs</option>
-        <option value="07:00">07:00 hrs</option>
-        <option value="09:00">09:00 hrs</option>
-        <option value="21:00">21:00 hrs</option>
-        <option value="22:00">22:00 hrs</option>
-        <option value="00:00">00:00 hrs</option>
-    </select>
-
-    <button onclick="registrarTurno()">Registrar e Imprimir Turno de Salida</button>
-
-    <table id="tablaResultados" style="display: none;">
-        <thead>
-            <tr>
-                <th>Colaborador</th>
-                <th>Hora Entrada</th>
-                <th>Descanso Asignado</th>
-            </tr>
-        </thead>
-        <tbody id="cuerpoTabla"></tbody>
-    </table>
-</div>
-
-<script>
-    const opcionesDescanso = {
-        "06:00": ["08:00", "09:30", "10:30"],
-        "07:00": ["09:00", "10:15", "11:15"],
-        "09:00": ["11:00", "12:30", "13:30"],
-        "21:00": ["23:00", "00:45", "01:45"],
-        "22:00": ["00:00", "01:30", "02:30"],
-        "00:00": ["01:20", "03:00", "04:00"]
-    };
-
-    function registrarTurno() {
-        const usuario = document.getElementById("userId").value.trim();
-        const horaIngreso = document.getElementById("turnoHora").value;
-
-        if (!usuario) {
-            alert("Por favor, ingrese el ID o Nombre del colaborador.");
-            return;
-        }
-
-        if (!horaIngreso) {
-            alert("Por favor, seleccione una hora de ingreso.");
-            return;
-        }
-
-        const descansosDisponibles = opcionesDescanso[horaIngreso];
-        const indiceAleatorio = Math.floor(Math.random() * descansosDisponibles.length);
-        const descansoAsignado = descansosDisponibles[indiceAleatorio];
-
-        const cuerpoTabla = document.getElementById("cuerpoTabla");
-        const nuevaFila = `
-            <tr>
-                <td>${usuario}</td>
-                <td>${horaIngreso} hrs</td>
-                <td><strong>${descansoAsignado} hrs</strong></td>
-            </tr>
-        `;
-        
-        cuerpoTabla.innerHTML = nuevaFila;
-        document.getElementById("tablaResultados").style.display = "table";
-        document.getElementById("userId").value = "";
-    }
-</script>
-
-</body>
-</html>
+    <label for="userId">ID o Nombre del
