@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro de Turnos de Salida de descanso</title>
+  <title>Asignación de Salida a turnos de descanso</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 600px; margin: 30px auto; padding: 20px; }
     .card { border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
@@ -18,14 +18,14 @@
 <body>
 
 <div class="card">
-  <h2>Registro de Ingreso y Asignación de Salida de descanso/h2>
+  <h2>Asignación de Salida a turnos de descanso/h2>
   
   <label for="userId">ID o Nombre del Colaborador:</label>
-  <input type="text" id="userId" placeholder="Ej. Evelyn o ID-1234">
+  <input type="text" id="userId" placeholder="Ej. Ev o ID-1234">
 
   <label for="turnoHora">Hora del Turno de Ingreso:</label>
   <select id="turnoHora">
-    <option value="21:00">21:00 hrs</option>
+    <option value="21:00">21:00 hrs, 22:00 hrs, 00:00 hrs</option>
   </select>
 
   <button onclick="registrarTurno()">Registrar e Imprimir Turno de Salida</button>
